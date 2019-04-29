@@ -1,0 +1,11 @@
+{
+  "name": "crud_operation",
+  "version": "1.0.0",
+  "description": "crud application using node + mongodb + express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Satya Prakash Nandy",
+  "license": "ISC"
+}
