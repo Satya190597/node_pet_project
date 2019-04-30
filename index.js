@@ -1,4 +1,11 @@
 const express = require('express')
+const mongose = require('mongoose')
+
+mongose.connect('mongodb://127.0.0.1:27017/Satya', { useNewUrlParser: true }).then(() => {
+  console.log('Database Connected')
+}).catch(() => {
+  console.log('Sorry Something Went Wrong')
+})
 
 const app = express()
 
