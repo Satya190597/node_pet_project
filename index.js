@@ -9,11 +9,11 @@ const app = express()
 mongose.connect(config.connectionUrl, config.connectionOption).then(() => {
   console.log('*** Database Connected ***')
 }).catch((error) => {
-  console.log('*** Unable To Connect To Database ***\nError : '+error)
+  console.log('*** Unable To Connect To Database ***\nError : ' + error)
 })
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(routes)
 
 app.get('/', (request, response) => {
