@@ -1,5 +1,5 @@
 /*
-    Import Modules : ['passport','passport-github']
+    Import Modules : ['passport','passport-github','../config']
 */
 const passport = require('passport')
 const GitHubStrategy = require('passport-github').Strategy;
@@ -16,7 +16,6 @@ var configurePassport = {
         // STEP 2 : [Implement serialize and deserialize objects of passport]
 
         passport.serializeUser(function(profile,done){
-            console.log(`+++ Inside Serialize +++\n${profile.username}\n+++ Note : Able The Get Profile Information +++`)
             done(null,profile);
         })
 
@@ -32,7 +31,6 @@ var configurePassport = {
             callbackURL: config.gitHub.callbackURL
           },
           function(accessToken, refreshToken, profile, done) {
-            console.log(`+++ Inside Configuration +++\n${profile}`)
             done(null,profile)
           }
         ));
