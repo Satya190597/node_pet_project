@@ -9,7 +9,9 @@
   "author": "Satya Prakash Nandy",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "passport": "^0.4.0",
+    "passport-github": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
