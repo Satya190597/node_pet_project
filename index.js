@@ -25,7 +25,7 @@ const port = 8088
 
   // [Callback url]
   app.get('/auth/github/callback',passport.authenticate('github',{failureRedirect : '/auth/failed'}),function(request,response){
-    response.status(200).json(request.user)    
+    response.status(200).json(request.user)
   })
 
 /*
@@ -36,7 +36,7 @@ app.use(routes)
 
 // [Default Route]
 
-app.get('/', (request, response) => {
+app.get('/', loginMiddleware,(request, response) => {
   response.status(200).json({ 'message': 'Welcome To My Application' })
 })
 

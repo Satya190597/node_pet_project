@@ -16,6 +16,7 @@ var configurePassport = {
         // STEP 2 : [Implement serialize and deserialize objects of passport]
 
         passport.serializeUser(function(profile,done){
+            
             done(null,profile);
         })
 
@@ -31,6 +32,7 @@ var configurePassport = {
             callbackURL: config.gitHub.callbackURL
           },
           function(accessToken, refreshToken, profile, done) {
+            console.log(accessToken)
             done(null,profile)
           }
         ));
