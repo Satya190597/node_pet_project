@@ -34,7 +34,6 @@ var configurePassport = {
             callbackURL: config.gitHub.callbackURL
           },
           function(accessToken, refreshToken, profile, done) {
-            console.log(accessToken)
             done(null,profile)
           }
         ));
