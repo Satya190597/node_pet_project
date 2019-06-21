@@ -1,8 +1,10 @@
 /*
-    Import Modules : ['passport','passport-github','../config']
+    Import Modules : ['passport','passport-github','../config','passport-jwt']
 */
 const passport = require('passport')
 const GitHubStrategy = require('passport-github').Strategy;
+const JwtStrategy = require('passport-jwt').Strategy
+const ExtractJwt = require('passport-jwt').ExtractJwt
 const config = require('../config')
 
 var configurePassport = {
@@ -36,6 +38,17 @@ var configurePassport = {
             done(null,profile)
           }
         ));
+    },
+    configureJwt : () => {
+        passport.use(new JwtStrategy({
+            jwtFromRequest : ExtractJwt.fromHeader('token'),
+            secretOrKey : config.jwt.secret
+        },function(jwt_payload,next){
+            if(jwt_payload)
+                return next(null,jwt_payload.user)
+            else
+                return next(null,false)
+        }))
     }
 }
 
