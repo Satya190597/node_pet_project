@@ -15,30 +15,54 @@ const port = 8088
   [START]
 */
 
-  // [Import modules]
-  const passport = require('passport')
-  const configurePassport = require('./config/passportConfig')
+// [Import modules]
+const passport = require('passport')
+const configurePassport = require('./config/passportConfig')
 
-  // [Configure passport]
-  configurePassport.configureGithubStrategy(app)
-  configurePassport.configureJwt()
+// [Configure passport]
+configurePassport.configureGithubStrategy(app)
+configurePassport.configureJwt()
 
-  // [Login url]
-  app.get('/auth/github',passport.authenticate('github'));
+// [Login url]
+app.get('/auth/github', passport.authenticate('github'))
 
-  // [Callback url]
-  app.get('/auth/github/callback',passport.authenticate('github',{failureRedirect : '/auth/failed'}),function(request,response){
-    response.status(200).json(request.user)
+// [Callback url]
+app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/auth/failed' }), function (request, response) {
+  response.status(200).json(request.user)
+})
+
+// [Get JWT Token]
+app.get('/auth/jwt/token', (request, response) => {
+  let token = jwt.sign({ user: 'satya prakash nandy' }, config.jwt.secret)
+  response.status(200).json({ token: token })
+})
+
+// [Verify JWT Token]
+app.get('/auth/jwt/verify', passport.authenticate('jwt', { session: false }), (request, response) => {
+  response.status(200).json({ 'user': request.user })
+})
+
+/*
+  [END]
+*/
+
+/*
+  [Testing Mongoose Schema]
+  [START]
+ */
+
+const mongooseConfig = require('./config/mongoConfig')
+const User = require('./models/user')
+
+mongooseConfig()
+
+app.get('/create/user', (request, response) => {
+  let newUser = new User({ name: 'satya', description: 'Testing', rating: [{ rating: 4.5, userId: 'Ravi' }] })
+  newUser.save((err) => {
+    if (err) { console.log(err) }
   })
-
-  app.get('/auth/jwt/token',(request,response) => {
-    let token = jwt.sign({ user : 'satya prakash nandy' },config.jwt.secret);
-    response.status(200).json({token:token})
-  })
-
-  app.get('/auth/jwt/verify',passport.authenticate('jwt', { session : false }),(request,response) => {
-    response.status(200).json({'user':request.user})
-  })
+  response.status(200).json(newUser)
+})
 
 /*
   [END]
