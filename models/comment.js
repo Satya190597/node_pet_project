@@ -3,15 +3,15 @@
 */
 const mongoose = require('mongoose')
 
-var rating = new mongoose.Schema({
+var comment = new mongoose.Schema({
   userId: {
     type: String
   },
-  rating: {
-    type: Number
+  text: {
+    type: String
   }
 }, {
   timestamps: true
 })
 
-module.exports = mongoose.model('Rating',rating)
+module.exports = comment
