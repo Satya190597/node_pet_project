@@ -14,4 +14,4 @@ var rating = new mongoose.Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('Rating',rating)
+module.exports = rating

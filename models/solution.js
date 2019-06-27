@@ -1,6 +1,9 @@
 /*
+    Import Modules : ['mongoose','./rating', './comment']
 */
 const mongoose =  require('mongoose')
+const Comment = require('./comment')
+const Rating = require('./rating')
 
 var solution = new mongoose.Schema({
     title: {
@@ -19,11 +22,13 @@ var solution = new mongoose.Schema({
         type: [String]
     },
     ratings: {
-        type: [rating]
+        type: [Rating]
     },
     comments: {
-        type: [comment]
+        type: [Comment]
     }
 },{
     timestamps: true
 })
+
+module.exports = solution
