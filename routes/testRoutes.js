@@ -19,13 +19,13 @@ router.get('/test/admin', (request, response) => {
 })
 
 // [TEST UPLOAD IMAGE ROUTES]
-router.post('/test/uploadImage',(request,response) => {
-    uploadService('image')(request,response,function(error){
-    return (error) ? response.end(error) : response.status(200).json({'file':'File Uploaded'})
+router.post('/test/uploadImage', (request, response) => {
+  uploadService('image')(request, response, function (error) {
+    return (error) ? response.end(error) : response.status(200).json({ 'file': 'File Uploaded' })
   })
 })
-router.get('/test/uploadImage',(request,response) => {
-  response.sendFile('./imageUploadTest.html',{ root: '.' })
-});
+router.get('/test/uploadImage', (request, response) => {
+  response.sendFile('./imageUploadTest.html', { root: '.' })
+})
 
 module.exports = router
