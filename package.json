@@ -9,7 +9,7 @@
   "author": "Satya Prakash Nandy",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.4.0",
     "passport-github": "^1.1.0",
